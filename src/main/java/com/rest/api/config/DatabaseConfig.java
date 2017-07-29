@@ -21,7 +21,7 @@ import javax.sql.DataSource;
 
 @EnableAutoConfiguration
 @Configuration
-@ComponentScan({"com.rest.api"})
+@ComponentScan({"com.rest.api.repositories"})
 @PropertySource(value={"classpath:application.properties"})
 public class DatabaseConfig {
 
