@@ -1,12 +1,13 @@
 package com.rest.api.config;
 
 import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ComponentScans;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -21,9 +22,8 @@ import javax.sql.DataSource;
 
 @EnableAutoConfiguration
 @Configuration
-@ComponentScan({"com.rest.api.repositories"})
-@PropertySource(value={"classpath:application.properties"})
-public class DatabaseConfig {
+@MapperScan("com.rest.api.repositories")
+public class WebConfiguration {
 
     @Autowired
     private Environment environment;
@@ -37,10 +37,12 @@ public class DatabaseConfig {
         dataSource.setPassword(environment.getProperty("MOL.dataSource.password"));
         return dataSource;
     }
+
     @Bean
     public DataSourceTransactionManager transactionManager() {
         return new DataSourceTransactionManager(getDataSource());
     }
+
     @Bean
     public SqlSessionFactoryBean sqlSessionFactory() throws Exception {
         SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();

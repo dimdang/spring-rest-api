@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 
 @Service
-public interface BooksService {
+public interface BooksService{
 
     public ArrayList<Books> getAllBooks();
 }

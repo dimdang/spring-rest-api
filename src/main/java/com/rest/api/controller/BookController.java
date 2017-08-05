@@ -3,6 +3,7 @@ package com.rest.api.controller;
 import com.rest.api.model.Books;
 import com.rest.api.services.BooksService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -21,7 +22,8 @@ import java.util.Map;
  * Email    : d.dim@gl-f.com
  */
 
-@Controller
+
+@RestController
 @RequestMapping("books")
 public class BookController {
 
