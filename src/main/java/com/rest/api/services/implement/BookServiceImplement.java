@@ -24,4 +24,9 @@ public class BookServiceImplement implements BooksService {
     public ArrayList<Books> getAllBooks() {
         return bookRepository.getAllBooks();
     }
+
+    @Override
+    public int createBook(Books books) {
+        return bookRepository.createBook(books);
+    }
 }

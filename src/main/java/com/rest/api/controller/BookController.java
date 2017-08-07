@@ -24,13 +24,13 @@ import java.util.Map;
 
 
 @RestController
-@RequestMapping("books")
+@RequestMapping("api/books")
 public class BookController {
 
     @Autowired
     BooksService booksService;
 
-    @RequestMapping(value ="/", method = RequestMethod.GET)
+    @RequestMapping( method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<Map<String, Object>> getAllBooks() {
         Map<String, Object> map = new HashMap<>();
@@ -46,6 +46,24 @@ public class BookController {
             }
 
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<Map<String, Object>>createBook(){
+        Map<String, Object> map = new HashMap<>();
+        try {
+           Books books = new Books();
+           if (books != null && booksService.createBook(books) > 0 ){
+               map.put("STATUS", true);
+               map.put("MESSAGE", "BOOK CREATED...!");
+           }else {
+               map.put("STATUS", false);
+               map.put("MESSAGE", "Internal server error ........... cal bucky for help!");
+           }
+        }catch (Exception e){
             e.printStackTrace();
         }
         return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);

@@ -15,4 +15,6 @@ import java.util.ArrayList;
 public interface BooksService{
 
     public ArrayList<Books> getAllBooks();
+
+    public int createBook (Books books);
 }
