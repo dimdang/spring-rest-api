@@ -7,10 +7,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -52,11 +49,10 @@ public class BookController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Map<String, Object>>createBook(){
+    public ResponseEntity<Map<String, Object>>createBook(@RequestBody Books books){
         Map<String, Object> map = new HashMap<>();
         try {
-           Books books = new Books();
-           if (books != null && booksService.createBook(books) > 0 ){
+           if (books != null && booksService.createBook(books)){
                map.put("STATUS", true);
                map.put("MESSAGE", "BOOK CREATED...!");
            }else {
@@ -68,5 +64,6 @@ public class BookController {
         }
         return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
     }
+
 
 }

@@ -16,5 +16,9 @@ public interface BooksService{
 
     public ArrayList<Books> getAllBooks();
 
-    public int createBook (Books books);
+    public boolean createBook (Books books);
+
+    public boolean deleteBook (int id);
+
+    public boolean updateBooks(Books books);
 }

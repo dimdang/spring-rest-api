@@ -26,7 +26,19 @@ public class BookServiceImplement implements BooksService {
     }
 
     @Override
-    public int createBook(Books books) {
+    public boolean createBook(Books books) {
         return bookRepository.createBook(books);
     }
+
+    @Override
+    public boolean deleteBook(int id) {
+        return bookRepository.deleteBook(id);
+    }
+
+    @Override
+    public boolean updateBooks(Books books) {
+        return bookRepository.updateBooks(books);
+    }
+
+
 }
