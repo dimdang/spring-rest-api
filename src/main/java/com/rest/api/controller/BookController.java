@@ -65,5 +65,39 @@ public class BookController {
         return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
     }
 
+    @RequestMapping(method = RequestMethod.PUT)
+    public ResponseEntity<Map<String, Object>> updateBooks(@RequestBody Books books){
+        Map<String, Object> map = new HashMap<>();
+        try {
+            if (books != null && booksService.updateBooks(books)){
+                map.put("STATUS", true);
+                map.put("MESSAGE", "BOOK UPDATED...!");
+            }else {
+                map.put("STATUS", false);
+                map.put("MESSAGE", "Internal server error, so update fail........... cal bucky for help!");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+    }
+
+    public ResponseEntity<Map<String, Object>> deleteBook(@RequestParam int id){
+        Map<String, Object> map = new HashMap<>();
+        try {
+            if (booksService.deleteBook(id)){
+                map.put("STATUS", true);
+                map.put("MESSAGE", "BOOK HAS BEEN DELETE...!");
+            }else {
+                map.put("STATUS", false);
+                map.put("MESSAGE", "Contact bucky.......!");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+    }
 
 }

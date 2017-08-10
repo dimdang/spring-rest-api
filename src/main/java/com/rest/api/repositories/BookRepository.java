@@ -30,7 +30,7 @@ public interface BookRepository {
     @Insert(C_BOOKS)
     public boolean createBook (Books books);
 
-    public final String DEL_UPDATE =  "DELETE FROM TABLE BOOKS WHERE ID = #{id}";
+    public final String DEL_UPDATE =  "DELETE FROM BOOKS WHERE ID = #{id}";
 
     @Delete(DEL_UPDATE)
     public boolean deleteBook (int id);
